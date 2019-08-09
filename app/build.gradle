@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 project.ext {
     supportLibraryVersion = "25.2.0"
-    daggerVersion = "2.11"
+    daggerVersion = "2.14.1"
     retrofitVersion = "2.5.0"
     butterKnifeVersion= "8.8.1"
     eventBusVersion= "3.1.1"
@@ -49,6 +49,11 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$project.retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$project.retrofitVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$project.okhttpVersion"
+
+    implementation "com.google.dagger:dagger:$project.daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$project.daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$project.daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$project.daggerVersion"
 
     implementation "com.google.code.gson:gson:$project.gsonVersion"
 
