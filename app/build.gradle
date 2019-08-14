@@ -2,12 +2,15 @@ apply plugin: 'com.android.application'
 
 project.ext {
     supportLibraryVersion = "25.2.0"
-    daggerVersion = "2.14.1"
+    daggerVersion = "2.15"
     retrofitVersion = "2.5.0"
     butterKnifeVersion= "8.8.1"
     eventBusVersion= "3.1.1"
     gsonVersion= "2.8.5"
     okhttpVersion = "3.12.1"
+    rxJava =  "2.0.5"
+    retrofitRxJava ="2.4.0"
+    rxandroid = "2.0.2"
 }
 
 android {
@@ -49,6 +52,7 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$project.retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$project.retrofitVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$project.okhttpVersion"
+    implementation "com.squareup.retrofit2:converter-scalars:$project.retrofitVersion"
 
     implementation "com.google.dagger:dagger:$project.daggerVersion"
     annotationProcessor "com.google.dagger:dagger-compiler:$project.daggerVersion"
@@ -58,4 +62,9 @@ dependencies {
     implementation "com.google.code.gson:gson:$project.gsonVersion"
 
     implementation "org.greenrobot:eventbus:$project.eventBusVersion"
+
+    implementation "io.reactivex.rxjava2:rxjava:$project.rxJava"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$project.retrofitRxJava"
+    implementation "io.reactivex.rxjava2:rxandroid:$project.rxandroid"
+
 }

@@ -19,6 +19,7 @@ public class FootBallFixture extends Application implements HasActivityInjector 
     @Override
     public void onCreate() {
         super.onCreate();
+
         DaggerAppComponent
                 .builder()
                 .application(this)

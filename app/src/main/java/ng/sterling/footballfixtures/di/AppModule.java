@@ -7,6 +7,8 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import ng.sterling.footballfixtures.network.ApiClient;
+import ng.sterling.footballfixtures.network.ApiService;
 
 
 /**
