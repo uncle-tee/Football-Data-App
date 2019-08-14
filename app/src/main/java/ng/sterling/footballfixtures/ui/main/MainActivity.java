@@ -4,21 +4,33 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
+import java.util.List;
+
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
 import ng.sterling.footballfixtures.R;
+import ng.sterling.footballfixtures.dto.Match;
+import ng.sterling.footballfixtures.dto.NameAndId;
+import ng.sterling.footballfixtures.dto.response.MainResponseDto;
+import ng.sterling.footballfixtures.network.ApiClient;
+import ng.sterling.footballfixtures.ui.BaseActivity;
 
-public class MainActivity extends AppCompatActivity implements MainView {
+public class MainActivity extends BaseActivity implements MainView {
 
+    private final String TAG = MainActivity.class.getSimpleName();
 
     @Inject
     MainPresenter mainPresenter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mainPresenter.showTestString();
+                mainPresenter.getMatchesAndCompetitions();
             }
         });
     }
@@ -61,7 +73,26 @@ public class MainActivity extends AppCompatActivity implements MainView {
     }
 
     @Override
-    public void showWorkingToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    protected void onPause() {
+        mainPresenter.onPause();
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        mainPresenter.onDestroy();
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mainPresenter.onResume();
+    }
+
+
+    @Override
+    public void showMatchAndCompetitions(MainResponseDto matchAndCompetition) {
+        Log.e(TAG, "showMatchAndCompetitions: " + new Gson().toJson(matchAndCompetition));
     }
 }

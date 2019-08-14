@@ -14,8 +14,9 @@ import ng.sterling.footballfixtures.FootBallFixture;
 
 @Component(modules = {
         AndroidInjectionModule.class,
+        AppModule.class,
         ActivityBuilder.class,
-        AppModule.class}
+       }
 )
 public interface AppComponent {
 
@@ -25,9 +26,14 @@ public interface AppComponent {
         @BindsInstance
         Builder application(Application application);
 
+        @BindsInstance
+        Builder appModule(AppModule appModule);
+
+
         AppComponent build();
     }
 
     void inject(FootBallFixture footBallFixture);
+
 
 }
