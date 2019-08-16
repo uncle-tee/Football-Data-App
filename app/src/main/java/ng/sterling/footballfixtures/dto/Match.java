@@ -59,7 +59,7 @@ public class Match extends ApiResponse {
         return this;
     }
 
-    public static class Score{
+    public static class Score extends ApiResponse{
 
         private Result fullTime;
 
@@ -74,7 +74,7 @@ public class Match extends ApiResponse {
     }
 
 
-    public static class Result{
+    public static class Result extends ApiResponse{
         private String homeTeam;
         private String awayTeam;
 

@@ -34,6 +34,7 @@ public class ApiCallBack<T extends ApiResponse>  implements Observer<T> {
     @Override
     public void onNext(T t) {
         ApiSuccessResponse<T> tApiSuccessResponse = new ApiSuccessResponse<T>().setData(t);
+        Log.e(TAG, "onNext: ");
         EventBus.getDefault().post(tApiSuccessResponse);
     }
 

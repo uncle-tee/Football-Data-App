@@ -1,13 +1,11 @@
 package ng.sterling.footballfixtures.di;
 
-import android.app.Activity;
-
-import dagger.Binds;
 import dagger.Module;
-import dagger.android.ActivityKey;
-import dagger.android.AndroidInjector;
 import dagger.android.ContributesAndroidInjector;
-import dagger.multibindings.IntoMap;
+import ng.sterling.footballfixtures.ui.competionDetail.CompetitionDetailActivity;
+import ng.sterling.footballfixtures.ui.competionDetail.CompetitionDetailActivityModule;
+import ng.sterling.footballfixtures.ui.competionDetail.CompetitionDetailsFragmentProvider;
+import ng.sterling.footballfixtures.ui.main.CompetitionAndMatchFragmentProvider;
 import ng.sterling.footballfixtures.ui.main.MainActivity;
 import ng.sterling.footballfixtures.ui.main.MainActivityModule;
 
@@ -19,6 +17,14 @@ import ng.sterling.footballfixtures.ui.main.MainActivityModule;
 @Module
 public abstract class ActivityBuilder {
 
-    @ContributesAndroidInjector(modules = MainActivityModule.class)
+    @ContributesAndroidInjector(modules = {MainActivityModule.class, CompetitionAndMatchFragmentProvider.class})
     abstract MainActivity bindMainActivity();
+
+    @ContributesAndroidInjector(modules = {
+            CompetitionDetailActivityModule.class, CompetitionDetailsFragmentProvider.class
+    })
+    abstract CompetitionDetailActivity bindCompetionDetailActivity();
+
+
+
 }

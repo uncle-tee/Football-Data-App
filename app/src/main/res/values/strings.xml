@@ -3,4 +3,8 @@
     <string name="action_settings">Settings</string>
     <string name="football_data_base_url">https://api.football-data.org/v2</string>
     <string name="football_data_header_key">X-Auth-Token</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_competion_detail">CompetionDetailActivity</string>
 </resources>
