@@ -7,27 +7,31 @@ package ng.sterling.footballfixtures.ui.main;
  **/
 
 
+import android.app.Application;
+import android.content.Context;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
-
-import com.google.gson.Gson;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import javax.inject.Inject;
 
-import dagger.Subcomponent;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.BiFunction;
 import io.reactivex.schedulers.Schedulers;
+import ng.sterling.footballfixtures.FootBallFixture;
+import ng.sterling.footballfixtures.R;
 import ng.sterling.footballfixtures.dto.response.CompetitionResponse;
 import ng.sterling.footballfixtures.dto.response.MainResponseDto;
 import ng.sterling.footballfixtures.dto.response.MatchResponse;
 import ng.sterling.footballfixtures.model.ApiSuccessResponse;
 import ng.sterling.footballfixtures.network.ApiCallBack;
 import ng.sterling.footballfixtures.network.ApiClient;
+import ng.sterling.footballfixtures.ui.main.adapters.MainFragmentAdapter;
 
 
 /**
@@ -41,13 +45,21 @@ public class MainPresenterImpl implements MainPresenter {
     public ApiClient apiClient;
 
     private MainView mainView;
+
+    private FragmentManager fragmentManager;
+
     EventBus eventBus;
+
+    @Inject
+    Context context;
 
 
     @Inject
-    public MainPresenterImpl(MainView mainView, ApiClient apiClient) {
-        this.apiClient = apiClient;
+    public MainPresenterImpl(MainView mainView, EventBus eventBus, ApiClient apiClient) {
         this.mainView = mainView;
+        this.eventBus = eventBus;
+        this.apiClient = apiClient;
+        FootBallFixture.getAppComponent().inject(this);
     }
 
     private Observable<MatchResponse> fetchMatches() {
@@ -76,13 +88,18 @@ public class MainPresenterImpl implements MainPresenter {
     }
 
 
+
     /**
-     * This method is currently subcribing to the event bus, and will only be called when there is a positive network call.
+     * This method will be called by the event bus once data is available.
+     *
      * @param response
      */
     @Subscribe
     public void onGetMatchAndCompetion(ApiSuccessResponse<MainResponseDto> response) {
-        mainView.showMatchAndCompetitions(response.getData());
+
+        Log.e(TAG, "onGetMatchAndCompetion: " + "populated the adapter" );
+        mainView.setResponse(response.getData());
+
 
     }
 

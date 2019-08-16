@@ -5,6 +5,8 @@ import android.util.Log;
 
 import com.google.gson.GsonBuilder;
 
+import java.util.concurrent.TimeUnit;
+
 import javax.inject.Inject;
 
 import ng.sterling.footballfixtures.R;
@@ -31,7 +33,6 @@ public class ApiClient {
 
     private void initialiseRetrofit() {
 
-        System.out.println("W e are testing here");
         Log.e(this.getClass().getSimpleName(), "initialiseRetrofit: " + "we are here" );
         String baseUrl = null;
         String url = context.getResources().getString(R.string.football_data_base_url);
@@ -49,6 +50,9 @@ public class ApiClient {
 
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .connectTimeout(2, TimeUnit.MINUTES)
+                .writeTimeout(2, TimeUnit.MINUTES)
+                .readTimeout(2, TimeUnit.MINUTES)
                 .addInterceptor(AuthParamInterceptor.getAuthParamInterceptor(context))
                 .addInterceptor(httpLoggingInterceptor)
                 .build();

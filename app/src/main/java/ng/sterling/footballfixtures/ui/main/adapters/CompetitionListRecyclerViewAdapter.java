@@ -3,9 +3,12 @@ package ng.sterling.footballfixtures.ui.main.adapters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -19,12 +22,18 @@ import ng.sterling.footballfixtures.dto.NameAndId;
  **/
 
 public class CompetitionListRecyclerViewAdapter extends RecyclerView.Adapter<CompetitionViewHolder> {
+
+    public static final String TAG = CompetitionListRecyclerViewAdapter.class.getSimpleName();
     List<NameAndId> competitions;
     Context context;
 
-    public CompetitionListRecyclerViewAdapter(Context context, List<NameAndId> competitions) {
+    ClickListener clickListener;
+
+    public CompetitionListRecyclerViewAdapter(Context context, List<NameAndId> competitions, ClickListener clickListener) {
+        Log.e(TAG, "CompetitionListRecyclerViewAdapter: " + new Gson().toJson(competitions));
         this.competitions = competitions;
         this.context = context;
+        this.clickListener = clickListener;
     }
 
     @NonNull
@@ -36,7 +45,7 @@ public class CompetitionListRecyclerViewAdapter extends RecyclerView.Adapter<Com
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CompetitionViewHolder competitionViewHolder, int position) {
+    public void onBindViewHolder(@NonNull CompetitionViewHolder competitionViewHolder, final int position) {
 
         NameAndId competition = competitions.get(position);
 
@@ -44,12 +53,24 @@ public class CompetitionListRecyclerViewAdapter extends RecyclerView.Adapter<Com
                 .setText(competition.getName());
 
         competitionViewHolder.textViewCompetitionName
-                .setCompoundDrawablesWithIntrinsicBounds(0, 0,R.drawable.ic_keyboard_arrow_right_grey, 0);
+                .setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_keyboard_arrow_right_grey, 0);
+
+        competitionViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickListener.onItemClicked(competitions.get(position).getId());
+            }
+        });
 
     }
 
     @Override
     public int getItemCount() {
         return competitions.size();
+    }
+
+
+    public interface ClickListener {
+        void onItemClicked(Long competitionId);
     }
 }

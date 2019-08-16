@@ -1,35 +1,42 @@
 package ng.sterling.footballfixtures.ui.main;
 
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import com.google.gson.Gson;
 
-import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import dagger.android.AndroidInjection;
 import ng.sterling.footballfixtures.R;
-import ng.sterling.footballfixtures.dto.Match;
-import ng.sterling.footballfixtures.dto.NameAndId;
 import ng.sterling.footballfixtures.dto.response.MainResponseDto;
-import ng.sterling.footballfixtures.network.ApiClient;
 import ng.sterling.footballfixtures.ui.BaseActivity;
+import ng.sterling.footballfixtures.ui.main.adapters.MainFragmentAdapter;
+import ng.sterling.footballfixtures.ui.main.listeners.OnFragmentInteractionListener;
 
-public class MainActivity extends BaseActivity implements MainView {
+public class MainActivity extends BaseActivity implements
+        MainView,
+        OnFragmentInteractionListener,
+        TabLayout.OnTabSelectedListener{
 
     private final String TAG = MainActivity.class.getSimpleName();
 
     @Inject
     MainPresenter mainPresenter;
+    @BindView(R.id.tabLayout)
+    TabLayout tabLayout;
+    @BindView(R.id.viewpager)
+    ViewPager viewpager;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
 
     @Override
@@ -38,16 +45,12 @@ public class MainActivity extends BaseActivity implements MainView {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        ButterKnife.bind(this);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mainPresenter.getMatchesAndCompetitions();
-            }
-        });
+        mainPresenter.getMatchesAndCompetitions();
+
+
     }
 
     @Override
@@ -68,6 +71,7 @@ public class MainActivity extends BaseActivity implements MainView {
         if (id == R.id.action_settings) {
             return true;
         }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -92,7 +96,45 @@ public class MainActivity extends BaseActivity implements MainView {
 
 
     @Override
-    public void showMatchAndCompetitions(MainResponseDto matchAndCompetition) {
-        Log.e(TAG, "showMatchAndCompetitions: " + new Gson().toJson(matchAndCompetition));
+    public void onFragmentInteraction(Uri uri) {
+
     }
+
+
+    @Override
+    public void setResponse(MainResponseDto responseData) {
+        viewpager.setAdapter(new MainFragmentAdapter(this, getSupportFragmentManager(), responseData));
+        tabLayout.setupWithViewPager(viewpager);
+        this.tabLayout.getTabAt(0).setIcon(R.drawable.soccer_24);
+        this.tabLayout.getTabAt(1).setIcon(R.drawable.soccer_field);
+        this.tabLayout.addOnTabSelectedListener(this);
+    }
+
+
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) {
+        int position = tab.getPosition();
+        switch (position) {
+            case 0:
+                toolbar.setTitle("Today's Fixture");
+
+                break;
+            case 1:
+                toolbar.setTitle("Competition");
+                break;
+
+        }
+    }
+
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {
+
+    }
+
+
 }

@@ -7,17 +7,23 @@ package ng.sterling.footballfixtures.di;
 
 import android.app.Application;
 
+import javax.inject.Singleton;
+
 import dagger.BindsInstance;
 import dagger.Component;
 import dagger.android.AndroidInjectionModule;
+import dagger.android.support.AndroidSupportInjectionModule;
 import ng.sterling.footballfixtures.FootBallFixture;
+import ng.sterling.footballfixtures.ui.competionDetail.CompetitionDetailActivity;
+import ng.sterling.footballfixtures.ui.main.MainPresenter;
 
 @Component(modules = {
-        AndroidInjectionModule.class,
+        AndroidSupportInjectionModule.class,
         AppModule.class,
         ActivityBuilder.class,
        }
 )
+@Singleton
 public interface AppComponent {
 
     @Component.Builder
@@ -26,14 +32,14 @@ public interface AppComponent {
         @BindsInstance
         Builder application(Application application);
 
-        @BindsInstance
-        Builder appModule(AppModule appModule);
-
-
         AppComponent build();
     }
 
     void inject(FootBallFixture footBallFixture);
+
+    void inject(MainPresenter mainPresenter);
+
+
 
 
 }
