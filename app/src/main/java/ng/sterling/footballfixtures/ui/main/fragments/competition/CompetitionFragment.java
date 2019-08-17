@@ -1,6 +1,5 @@
 package ng.sterling.footballfixtures.ui.main.fragments.competition;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,9 +25,12 @@ import ng.sterling.footballfixtures.ui.main.listeners.OnFragmentInteractionListe
 
 public class CompetitionFragment extends DaggerFragment implements CompetitionFragmentView {
 
-    public static final String COMPETION_ARG = "COMPETITION_ARG";
+    public static final String COMPETITION_ARG = "COMPETITION_ARG";
     @Inject
     CompetitionFragmentPresenter competitionFragmentPresenter;
+
+    @Inject
+    RecyclerView.ItemDecoration recyclerViewItemDivider;
 
     List<NameAndId> competions;
 
@@ -37,6 +39,8 @@ public class CompetitionFragment extends DaggerFragment implements CompetitionFr
 
     @BindView(R.id.recycler_view_competion_list)
     RecyclerView recyclerViewCompetionList;
+
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -95,6 +99,7 @@ public class CompetitionFragment extends DaggerFragment implements CompetitionFr
     public void setAdapterAndLayoutManager(CompetitionListRecyclerViewAdapter adapter, LinearLayoutManager layoutManager) {
         recyclerViewCompetionList.setLayoutManager(layoutManager);
         recyclerViewCompetionList.setAdapter(adapter);
+        recyclerViewCompetionList.addItemDecoration(recyclerViewItemDivider);
 
     }
 
@@ -102,7 +107,7 @@ public class CompetitionFragment extends DaggerFragment implements CompetitionFr
     public void navigateToCompetitionDetail(Long competitionId) {
         CompetitionFragment competitionFragment = CompetitionFragment.this;
         Intent intent = new Intent(competitionFragment.getActivity(), CompetitionDetailActivity.class);
-        intent.putExtra(COMPETION_ARG, competitionId);
+        intent.putExtra(COMPETITION_ARG, competitionId);
         startActivity(intent);
         competitionFragment.getActivity().overridePendingTransition(0, 0);
 
