@@ -40,6 +40,8 @@ public class CompetitionStandingFragment extends DaggerFragment implements Compe
 
     @Inject
     CompetitionStandingFragmentPresenter competitionStandingFragmentPresenter;
+    @Inject
+    RecyclerView.ItemDecoration recyclerViewDivider;
 
 
     public static CompetitionStandingFragment newInstance(ArrayList<CompetitionStandingsTableItemDto> competitionStanding) {
@@ -91,6 +93,7 @@ public class CompetitionStandingFragment extends DaggerFragment implements Compe
         Log.e(TAG, "setAdapterAndManager: "+ "Adding adapters" );
         recylerviewCompetitionStanding.setAdapter(adapter);
         recylerviewCompetitionStanding.setLayoutManager(layoutManager);
+        recylerviewCompetitionStanding.addItemDecoration(recyclerViewDivider);
 
         Log.e(TAG, "setAdapterAndManager: Item count" + recylerviewCompetitionStanding.getAdapter().getItemCount() ); ;
     }

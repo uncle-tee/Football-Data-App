@@ -6,6 +6,7 @@ package ng.sterling.footballfixtures.ui.competionDetail.fragments.competitionTea
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -26,10 +27,12 @@ import ng.sterling.footballfixtures.R;
 import ng.sterling.footballfixtures.dto.response.TeamDto;
 import ng.sterling.footballfixtures.ui.competionDetail.adapters.CompetitionTeamRecyclerViewAdapter;
 import ng.sterling.footballfixtures.ui.main.listeners.OnFragmentInteractionListener;
+import ng.sterling.footballfixtures.ui.squad.SquadActivity;
 
 
 public class CompetitionTeamFragment extends DaggerFragment implements CompetitionTeamView {
 
+    public static final String TEAM_ID = "TEAM_ID";
     private static final String COMPETITION_TEAM = "COMPETITION_TEAM";
 
 
@@ -98,6 +101,14 @@ public class CompetitionTeamFragment extends DaggerFragment implements Competiti
         recyclerViewTeamList.setAdapter(adapter);
         recyclerViewTeamList.setLayoutManager(layoutManager);
 
+    }
+
+    @Override
+    public void navigateToSquad(String teamId) {
+
+        Intent intent = new Intent(CompetitionTeamFragment.this.getActivity(), SquadActivity.class);
+        intent.putExtra(TEAM_ID, teamId);
+        startActivity(intent);
     }
 
 

@@ -30,10 +30,12 @@ public class MatchFragment extends DaggerFragment implements MatchFragmentView {
 
     private static final String MATCH_ARG = "MATCH_ARG";
     @BindView(R.id.match_recyler_view)
-    RecyclerView matchRecyclerView;
+    RecyclerView matchFixtureRecyclerView;
 
     @Inject
     MatchFragmentPresenter matchFragmentPresenter;
+    @Inject
+    RecyclerView.ItemDecoration lineDivider;
 
     private List<Match> matches;
 
@@ -93,8 +95,9 @@ public class MatchFragment extends DaggerFragment implements MatchFragmentView {
     @Override
     public void setAdapterAndLayoutManager(MatchFixtureRecylerViewAdapter adapter,
                                            LinearLayoutManager layoutManager) {
-        matchRecyclerView.setLayoutManager(layoutManager);
-        matchRecyclerView.setAdapter(adapter);
+        matchFixtureRecyclerView.setLayoutManager(layoutManager);
+        matchFixtureRecyclerView.setAdapter(adapter);
+        matchFixtureRecyclerView.addItemDecoration(lineDivider);
 
     }
 

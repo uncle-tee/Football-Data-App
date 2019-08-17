@@ -12,11 +12,16 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".ui.squad.SquadActivity"
+            android:label="@string/title_activity_squad"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".ui.competionDetail.CompetitionDetailActivity"
             android:label="@string/title_activity_competion_detail"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.main.MainActivity"
             android:label="@string/app_name"
@@ -27,6 +32,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

@@ -12,4 +12,6 @@ import ng.sterling.footballfixtures.ui.competionDetail.adapters.CompetitionTeamR
 
 public interface CompetitionTeamView {
     void setAdapterAndManager(GridLayoutManager layoutManager, CompetitionTeamRecyclerViewAdapter adapter);
+
+    void navigateToSquad(String teamId);
 }

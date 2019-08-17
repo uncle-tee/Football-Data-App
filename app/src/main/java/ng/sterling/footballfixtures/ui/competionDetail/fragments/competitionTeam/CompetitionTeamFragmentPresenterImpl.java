@@ -18,7 +18,7 @@ import ng.sterling.footballfixtures.ui.competionDetail.adapters.CompetitionTeamR
  * date:    16/08/2019
  **/
 
-public class CompetitionTeamFragmentPresenterImpl implements CompetitionTeamFragmentPresenter {
+public class CompetitionTeamFragmentPresenterImpl implements CompetitionTeamFragmentPresenter, CompetitionTeamRecyclerViewAdapter.SetOnClickListener {
     Context context;
     CompetitionTeamView competitionTeamView;
     List<TeamDto> teams;
@@ -40,9 +40,16 @@ public class CompetitionTeamFragmentPresenterImpl implements CompetitionTeamFrag
 
     private void provideAdapters() {
 
-        CompetitionTeamRecyclerViewAdapter adapter = new CompetitionTeamRecyclerViewAdapter(this.context, this.teams);
+        CompetitionTeamRecyclerViewAdapter adapter = new CompetitionTeamRecyclerViewAdapter(this.context, this.teams, this);
         GridLayoutManager linearLayoutManager = new GridLayoutManager(this.context, 3);
         competitionTeamView.setAdapterAndManager(linearLayoutManager, adapter);
 
     }
+
+    @Override
+    public void onClick(String squadId) {
+        competitionTeamView.navigateToSquad(squadId);
+    }
+
+
 }

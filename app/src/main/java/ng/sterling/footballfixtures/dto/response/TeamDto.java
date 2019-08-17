@@ -13,7 +13,7 @@ public class TeamDto extends NameAndId {
 
     private String crestUrl;
 
-    private List<NameAndId> squad;
+    private List<SquadDto> squad;
 
     public String getCrestUrl() {
         return crestUrl;
@@ -24,11 +24,11 @@ public class TeamDto extends NameAndId {
         return this;
     }
 
-    public List<NameAndId> getSquad() {
+    public List<SquadDto> getSquad() {
         return squad;
     }
 
-    public TeamDto setSquad(List<NameAndId> squad) {
+    public TeamDto setSquad(List<SquadDto> squad) {
         this.squad = squad;
         return this;
     }

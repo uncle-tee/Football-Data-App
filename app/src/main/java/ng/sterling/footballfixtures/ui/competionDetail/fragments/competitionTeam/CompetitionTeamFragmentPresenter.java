@@ -12,4 +12,5 @@ import ng.sterling.footballfixtures.dto.response.TeamDto;
 public interface CompetitionTeamFragmentPresenter {
 
     void setCompetitionTeam(List<TeamDto> teams);
+
 }

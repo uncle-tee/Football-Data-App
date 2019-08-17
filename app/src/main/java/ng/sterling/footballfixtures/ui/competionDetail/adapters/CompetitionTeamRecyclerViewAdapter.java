@@ -25,10 +25,12 @@ public class CompetitionTeamRecyclerViewAdapter extends RecyclerView.Adapter<Com
 
     Context context;
     List<TeamDto> teams;
+    SetOnClickListener onClickListener;
 
-    public CompetitionTeamRecyclerViewAdapter(Context context, List<TeamDto> teams) {
+    public CompetitionTeamRecyclerViewAdapter(Context context, List<TeamDto> teams, SetOnClickListener clickListener) {
         this.context = context;
         this.teams = teams;
+        this.onClickListener = clickListener;
     }
 
     @NonNull
@@ -40,18 +42,29 @@ public class CompetitionTeamRecyclerViewAdapter extends RecyclerView.Adapter<Com
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CompetitionTeamViewHolder competitionStandingViewHolder, int position) {
-        TeamDto teamDto = teams.get(position);
+    public void onBindViewHolder(@NonNull CompetitionTeamViewHolder competitionStandingViewHolder, final int position) {
+        final TeamDto teamDto = teams.get(position);
         String crestUrl = teamDto.getCrestUrl();
         if (!TextUtils.isEmpty(crestUrl)) {
             new GlideSvgUtil.Builder(competitionStandingViewHolder.imageViewClubLogo,crestUrl, this.context).build();
         }
         competitionStandingViewHolder.textViewClubName.setText(teamDto.getName());
 
+        competitionStandingViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickListener.onClick(teamDto.getId().toString());
+            }
+        });
+
     }
 
     @Override
     public int getItemCount() {
         return teams.size();
+    }
+
+    public interface SetOnClickListener{
+        void onClick(String teamId);
     }
 }

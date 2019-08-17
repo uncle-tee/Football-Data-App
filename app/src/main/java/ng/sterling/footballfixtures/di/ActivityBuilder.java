@@ -8,6 +8,8 @@ import ng.sterling.footballfixtures.ui.competionDetail.CompetitionDetailsFragmen
 import ng.sterling.footballfixtures.ui.main.CompetitionAndMatchFragmentProvider;
 import ng.sterling.footballfixtures.ui.main.MainActivity;
 import ng.sterling.footballfixtures.ui.main.MainActivityModule;
+import ng.sterling.footballfixtures.ui.squad.SquadActivity;
+import ng.sterling.footballfixtures.ui.squad.SquadActivityModule;
 
 /**
  * Author: Oluwatobi Adenekan
@@ -25,6 +27,10 @@ public abstract class ActivityBuilder {
     })
     abstract CompetitionDetailActivity bindCompetionDetailActivity();
 
+    @ContributesAndroidInjector(modules = {
+            SquadActivityModule.class
+    })
+    abstract SquadActivity bindSquadActivity();
 
 
 }

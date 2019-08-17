@@ -30,8 +30,8 @@ public interface ApiService {
     @GET("competitions/{id}/teams")
     Observable<TeamsResponse> getTeams(@Path("id") Long CompetitionId);
 
-    @GET("/teams/{id}")
-    Observable<TeamDto> getTeam(@Path("id") Long teamId);
+    @GET("teams/{id}")
+    Observable<TeamDto> getTeam(@Path("id") String teamId);
 
 
 

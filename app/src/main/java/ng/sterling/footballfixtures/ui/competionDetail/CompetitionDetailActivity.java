@@ -15,7 +15,6 @@ import ng.sterling.footballfixtures.R;
 import ng.sterling.footballfixtures.dto.response.CompetitionDetailResponse;
 import ng.sterling.footballfixtures.ui.BaseActivity;
 import ng.sterling.footballfixtures.ui.competionDetail.adapters.CompetitionDetailDetailFragmentPagerAdapter;
-import ng.sterling.footballfixtures.ui.competionDetail.fragments.competionStanding.CompetitionStandingFragment;
 import ng.sterling.footballfixtures.ui.main.fragments.competition.CompetitionFragment;
 import ng.sterling.footballfixtures.ui.main.listeners.OnFragmentInteractionListener;
 
@@ -44,7 +43,7 @@ public class CompetitionDetailActivity extends BaseActivity implements Competiti
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
 
-        final long competitionId = getIntent().getLongExtra(CompetitionFragment.COMPETION_ARG, -1);
+        final long competitionId = getIntent().getLongExtra(CompetitionFragment.COMPETITION_ARG, -1);
         competitionDetailPresenter.setCompetitionId(competitionId);
 
 

@@ -2,6 +2,7 @@ package ng.sterling.footballfixtures.di;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -11,6 +12,7 @@ import dagger.Module;
 import dagger.Provides;
 import ng.sterling.footballfixtures.network.ApiClient;
 import ng.sterling.footballfixtures.network.ApiService;
+import ng.sterling.footballfixtures.utils.DividerItemDecoration;
 
 
 /**
@@ -37,6 +39,11 @@ public class AppModule {
     @Provides
     EventBus provideEventBus(){
         return EventBus.getDefault();
+    }
+
+    @Provides
+    RecyclerView.ItemDecoration  providesDividerItemDecorator(Context context){
+        return new DividerItemDecoration(context);
     }
 
 }
