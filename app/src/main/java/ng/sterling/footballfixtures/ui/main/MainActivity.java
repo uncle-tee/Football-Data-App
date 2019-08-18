@@ -2,14 +2,16 @@ package ng.sterling.footballfixtures.ui.main;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 import javax.inject.Inject;
 
@@ -25,7 +27,7 @@ import ng.sterling.footballfixtures.ui.main.listeners.OnFragmentInteractionListe
 public class MainActivity extends BaseActivity implements
         MainView,
         OnFragmentInteractionListener,
-        TabLayout.OnTabSelectedListener{
+        TabLayout.OnTabSelectedListener {
 
     private final String TAG = MainActivity.class.getSimpleName();
 
@@ -37,6 +39,8 @@ public class MainActivity extends BaseActivity implements
     ViewPager viewpager;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+    @BindView(R.id.shimmer_view_container)
+    ShimmerFrameLayout shimmerFrameLayout;
 
 
     @Override
@@ -47,6 +51,12 @@ public class MainActivity extends BaseActivity implements
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Today's Fixture");
+
+
+        viewpager.setVisibility(View.GONE);
+//        shimmerFrameLayout.setScrollBarFadeDuration();
+        shimmerFrameLayout.startShimmer();
 
         mainPresenter.getMatchesAndCompetitions();
 
@@ -103,11 +113,20 @@ public class MainActivity extends BaseActivity implements
 
     @Override
     public void setResponse(MainResponseDto responseData) {
+        viewpager.setVisibility(View.VISIBLE);
+        shimmerFrameLayout.setVisibility(View.GONE);
+        shimmerFrameLayout.stopShimmer();
         viewpager.setAdapter(new MainFragmentAdapter(this, getSupportFragmentManager(), responseData));
         tabLayout.setupWithViewPager(viewpager);
         this.tabLayout.getTabAt(0).setIcon(R.drawable.soccer_24);
         this.tabLayout.getTabAt(1).setIcon(R.drawable.soccer_field);
         this.tabLayout.addOnTabSelectedListener(this);
+    }
+
+    @Override
+    public void showNetworkErrorMessage(String message) {
+        Log.e(TAG, "showNetworkErrorMessage: " + message );
+        Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG).show();
     }
 
 
@@ -117,10 +136,9 @@ public class MainActivity extends BaseActivity implements
         switch (position) {
             case 0:
                 toolbar.setTitle("Today's Fixture");
-
                 break;
             case 1:
-                toolbar.setTitle("Competition");
+                toolbar.setTitle("Competitions");
                 break;
 
         }

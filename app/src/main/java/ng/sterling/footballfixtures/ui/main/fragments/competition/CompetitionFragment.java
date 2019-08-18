@@ -104,10 +104,10 @@ public class CompetitionFragment extends DaggerFragment implements CompetitionFr
     }
 
     @Override
-    public void navigateToCompetitionDetail(Long competitionId) {
+    public void navigateToCompetitionDetail(NameAndId competition) {
         CompetitionFragment competitionFragment = CompetitionFragment.this;
         Intent intent = new Intent(competitionFragment.getActivity(), CompetitionDetailActivity.class);
-        intent.putExtra(COMPETITION_ARG, competitionId);
+        intent.putExtra(COMPETITION_ARG, competition);
         startActivity(intent);
         competitionFragment.getActivity().overridePendingTransition(0, 0);
 

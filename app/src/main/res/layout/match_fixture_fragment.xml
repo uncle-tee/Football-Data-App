@@ -2,7 +2,6 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:padding="8dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -11,11 +10,11 @@
         android:id="@+id/textView_match_status"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/roboto_medium"
         android:text="FINISHED"
-        android:textColor="@color/colorBlack"
+        android:textColor="@color/materialBlack"
         android:textSize="@dimen/match_status_text_size"
-        android:textStyle="bold"
         android:typeface="normal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,10 +24,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/roboto_medium"
         android:text="19:00"
-        android:textColor="@color/colorBlack"
+        android:textColor="@color/materialBlack"
         android:textSize="@dimen/match_status_text_size"
-        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/textView_match_status"
         app:layout_constraintTop_toBottomOf="@+id/textView_match_status" />
 
@@ -49,10 +48,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:fontFamily="@font/roboto_medium"
         android:text="Stade Brestois"
-        android:textColor="@android:color/black"
+        android:textColor="@color/materialBlack"
         android:textSize="@dimen/team_text_size"
-        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/textView_home_team_score"
         app:layout_constraintStart_toEndOf="@+id/textView_match_status"
         app:layout_constraintTop_toTopOf="parent" />
@@ -62,10 +61,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
+        android:fontFamily="@font/roboto_medium"
         android:text="0"
-        android:textColor="@android:color/black"
+        android:textColor="@color/materialBlack"
         android:textSize="@dimen/match_status_text_size"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -74,10 +73,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
+        android:fontFamily="@font/roboto_medium"
         android:text="Clermont Foot Auverge"
-        android:textColor="@android:color/black"
+        android:textColor="@color/materialBlack"
         android:textSize="@dimen/team_text_size"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/textView_home_team"
         app:layout_constraintStart_toStartOf="@+id/textView_home_team"
         app:layout_constraintTop_toBottomOf="@+id/textView_match_end_time" />
@@ -87,10 +86,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
+        android:fontFamily="@font/roboto_medium"
         android:text="0"
-        android:textColor="@android:color/black"
+        android:textColor="@color/materialBlack"
         android:textSize="@dimen/match_status_text_size"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/textView_away_team"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView_away_team" />

@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ng.sterling.footballfixtures.R;
+import ng.sterling.footballfixtures.dto.NameAndId;
 import ng.sterling.footballfixtures.dto.response.CompetitionDetailResponse;
 import ng.sterling.footballfixtures.ui.BaseActivity;
 import ng.sterling.footballfixtures.ui.competionDetail.adapters.CompetitionDetailDetailFragmentPagerAdapter;
@@ -43,8 +44,13 @@ public class CompetitionDetailActivity extends BaseActivity implements Competiti
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
 
-        final long competitionId = getIntent().getLongExtra(CompetitionFragment.COMPETITION_ARG, -1);
-        competitionDetailPresenter.setCompetitionId(competitionId);
+        final NameAndId competition = (NameAndId)getIntent().getSerializableExtra(CompetitionFragment.COMPETITION_ARG);
+        getSupportActionBar().setTitle(competition.getName());
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        competitionDetailPresenter.setCompetition(competition);
 
 
     }

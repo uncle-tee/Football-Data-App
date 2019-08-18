@@ -7,11 +7,8 @@ package ng.sterling.footballfixtures.ui.main;
  **/
 
 
-import android.app.Application;
 import android.content.Context;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 
 import org.greenrobot.eventbus.EventBus;
@@ -24,14 +21,13 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.BiFunction;
 import io.reactivex.schedulers.Schedulers;
 import ng.sterling.footballfixtures.FootBallFixture;
-import ng.sterling.footballfixtures.R;
 import ng.sterling.footballfixtures.dto.response.CompetitionResponse;
 import ng.sterling.footballfixtures.dto.response.MainResponseDto;
 import ng.sterling.footballfixtures.dto.response.MatchResponse;
+import ng.sterling.footballfixtures.model.ApiErorMessageEvent;
 import ng.sterling.footballfixtures.model.ApiSuccessResponse;
 import ng.sterling.footballfixtures.network.ApiCallBack;
 import ng.sterling.footballfixtures.network.ApiClient;
-import ng.sterling.footballfixtures.ui.main.adapters.MainFragmentAdapter;
 
 
 /**
@@ -101,6 +97,17 @@ public class MainPresenterImpl implements MainPresenter {
         mainView.setResponse(response.getData());
 
 
+    }
+
+
+    /**
+     * This is the event been fired when there is any network error.
+     * @param response
+     */
+    @Subscribe
+    public void OnErrorNetworkResponse(ApiErorMessageEvent response){
+
+        mainView.showNetworkErrorMessage(response.getMessage());
     }
 
 

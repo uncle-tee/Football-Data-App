@@ -1,12 +1,14 @@
 package ng.sterling.footballfixtures.ui.competionDetail;
 
+import ng.sterling.footballfixtures.dto.NameAndId;
+
 /**
  * Author: Oluwatobi Adenekan
  * date:    15/08/2019
  **/
 
 public interface CompetitionDetailPresenter {
-    void setCompetitionId(Long competitionDetail);
+    void setCompetition(NameAndId competitionDetail);
 
     void onDestroy();
 

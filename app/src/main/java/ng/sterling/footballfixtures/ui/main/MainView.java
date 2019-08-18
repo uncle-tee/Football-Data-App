@@ -16,6 +16,8 @@ public interface MainView {
 
     void setResponse(MainResponseDto responseData);
 
+    void showNetworkErrorMessage(String message);
+
 
 
 
