@@ -3,11 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:shimmer="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ui.main.MainActivity"
     tools:showIn="@layout/activity_main">
+
 
 
     <android.support.design.widget.TabLayout
@@ -22,6 +24,34 @@
         app:tabMode="fixed">
 
     </android.support.design.widget.TabLayout>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_view_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/tabLayout"
+        app:layout_constraintEnd_toEndOf="@+id/tabLayout"
+        app:layout_constraintHorizontal_bias="0.237"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_gravity="center"
+        app:shimmer_duration="@android:integer/config_shortAnimTime"
+        app:shimmer_tilt="@android:integer/config_mediumAnimTime"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <include layout="@layout/shimmer_effect_match_fixtures" />
+            <include layout="@layout/shimmer_effect_match_fixtures" />
+            <include layout="@layout/shimmer_effect_match_fixtures" />
+            <include layout="@layout/shimmer_effect_match_fixtures" />
+            <include layout="@layout/shimmer_effect_match_fixtures" />
+            <include layout="@layout/shimmer_effect_match_fixtures" />
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"

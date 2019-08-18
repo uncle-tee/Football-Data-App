@@ -12,7 +12,9 @@ import dagger.Module;
 import dagger.Provides;
 import ng.sterling.footballfixtures.network.ApiClient;
 import ng.sterling.footballfixtures.network.ApiService;
+import ng.sterling.footballfixtures.network.NoConnectivityInterceptor;
 import ng.sterling.footballfixtures.utils.DividerItemDecoration;
+import okhttp3.Interceptor;
 
 
 /**
@@ -32,8 +34,15 @@ public class AppModule {
     }
 
     @Provides
-    ApiClient provideApiClient(Application context) {
-        return new ApiClient(context);
+    @Singleton
+    Interceptor providesNoConnectivityInterceptor(Context context){
+        return new NoConnectivityInterceptor(context);
+    }
+
+
+    @Provides
+    ApiClient provideApiClient(Application context, Interceptor noConnectivityInterceptor) {
+        return new ApiClient(context, noConnectivityInterceptor);
     }
 
     @Provides

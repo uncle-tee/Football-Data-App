@@ -53,7 +53,7 @@ public class CompetitionFragmentPresenterImpl implements
     }
 
     @Override
-    public void onItemClicked(Long competitionId) {
-        competitionFragmentView.navigateToCompetitionDetail(competitionId);
+    public void onItemClicked(NameAndId competition) {
+        competitionFragmentView.navigateToCompetitionDetail(competition);
     }
 }

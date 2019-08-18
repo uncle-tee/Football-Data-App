@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import ng.sterling.footballfixtures.R;
-import ng.sterling.footballfixtures.ui.main.MainPresenter;
 import ng.sterling.footballfixtures.ui.main.adapters.viewHolders.MatchFixtureViewHolder;
 import ng.sterling.footballfixtures.dto.Match;
 import ng.sterling.footballfixtures.utils.DateTimeUtil;
@@ -35,7 +34,7 @@ public class MatchFixtureRecylerViewAdapter extends RecyclerView.Adapter<MatchFi
     @NonNull
     @Override
     public MatchFixtureViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.match_fixture, viewGroup, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.match_fixture_fragment, viewGroup, false);
         return new MatchFixtureViewHolder(view);
     }
 

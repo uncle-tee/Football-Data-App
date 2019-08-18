@@ -58,7 +58,7 @@ public class CompetitionListRecyclerViewAdapter extends RecyclerView.Adapter<Com
         competitionViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickListener.onItemClicked(competitions.get(position).getId());
+                clickListener.onItemClicked(competitions.get(position));
             }
         });
 
@@ -71,6 +71,6 @@ public class CompetitionListRecyclerViewAdapter extends RecyclerView.Adapter<Com
 
 
     public interface ClickListener {
-        void onItemClicked(Long competitionId);
+        void onItemClicked(NameAndId competition);
     }
 }

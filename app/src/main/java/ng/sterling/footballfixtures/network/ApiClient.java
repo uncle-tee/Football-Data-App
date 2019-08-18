@@ -7,9 +7,8 @@ import com.google.gson.GsonBuilder;
 
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Inject;
-
 import ng.sterling.footballfixtures.R;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -25,9 +24,11 @@ public class ApiClient {
 
     Context context;
     ApiService apiService;
+    Interceptor noConnectivityInterceptor;
 
-    public ApiClient(Context context) {
+    public ApiClient(Context context, Interceptor noConnectivityInterceptor) {
         this.context = context;
+        this.noConnectivityInterceptor = noConnectivityInterceptor;
         initialiseRetrofit();
     }
 
@@ -54,6 +55,7 @@ public class ApiClient {
                 .writeTimeout(2, TimeUnit.MINUTES)
                 .readTimeout(2, TimeUnit.MINUTES)
                 .addInterceptor(AuthParamInterceptor.getAuthParamInterceptor(context))
+                .addInterceptor(noConnectivityInterceptor)
                 .addInterceptor(httpLoggingInterceptor)
                 .build();
 
@@ -69,4 +71,6 @@ public class ApiClient {
     public ApiService getApiService() {
         return apiService;
     }
+
+
 }

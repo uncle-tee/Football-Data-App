@@ -12,6 +12,7 @@ import ng.sterling.footballfixtures.dto.response.CompetitionStandingsTableItemDt
 import ng.sterling.footballfixtures.dto.response.TeamDto;
 import ng.sterling.footballfixtures.ui.competionDetail.fragments.competionStanding.CompetitionStandingFragment;
 import ng.sterling.footballfixtures.ui.competionDetail.fragments.competitionTeam.CompetitionTeamFragment;
+import ng.sterling.footballfixtures.ui.competionDetail.fragments.competitionfixtures.CompetitionFixtureFragment;
 
 
 /**
@@ -38,10 +39,11 @@ public class CompetitionDetailDetailFragmentPagerAdapter extends FragmentPagerAd
             return CompetitionStandingFragment.newInstance((ArrayList<CompetitionStandingsTableItemDto>) data.getCompetitionStanding().getStandings().get(0).getTable());
 
         } else if (position == 1) {
+            return CompetitionFixtureFragment.newInstance(null);
+        } else if (position == 2) {
             return CompetitionTeamFragment.newInstance((ArrayList<TeamDto>) data.getTeams().getTeams());
         }
         return CompetitionStandingFragment.newInstance((ArrayList<CompetitionStandingsTableItemDto>) data.getCompetitionStanding().getStandings().get(0).getTable());
-
 
 
     }

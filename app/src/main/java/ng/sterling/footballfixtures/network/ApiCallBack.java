@@ -17,6 +17,7 @@ import org.greenrobot.eventbus.EventBus;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import ng.sterling.footballfixtures.dto.response.ApiResponse;
+import ng.sterling.footballfixtures.model.ApiErorMessageEvent;
 import ng.sterling.footballfixtures.model.ApiSuccessResponse;
 
 
@@ -40,9 +41,9 @@ public class ApiCallBack<T extends ApiResponse>  implements Observer<T> {
 
     @Override
     public void onError(Throwable e) {
-
+        Log.e(TAG, "onError: " + e.getMessage() );
         e.printStackTrace();
-        Log.e(TAG, "onError:  "+e.getMessage() );
+       EventBus.getDefault().post(new ApiErorMessageEvent(e.getMessage()));
     }
 
     @Override

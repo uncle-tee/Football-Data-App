@@ -14,6 +14,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.BiFunction;
 import io.reactivex.schedulers.Schedulers;
+import ng.sterling.footballfixtures.dto.NameAndId;
 import ng.sterling.footballfixtures.dto.response.CompetitionDetailResponse;
 import ng.sterling.footballfixtures.dto.response.CompetitionStandingResponse;
 import ng.sterling.footballfixtures.dto.response.MainResponseDto;
@@ -76,8 +77,9 @@ public class CompetitionDeatilPresenterImpl implements CompetitionDetailPresente
 
 
     @Override
-    public void setCompetitionId(Long competitionDetail) {
+    public void setCompetition(NameAndId competition) {
         getCompetitionStandingAndTeams(2002L).subscribe(new ApiCallBack<CompetitionDetailResponse>());
+        // Todo Update the competition and whwn 403 return a toast saying app is not in full mode.
     }
 
     @Subscribe

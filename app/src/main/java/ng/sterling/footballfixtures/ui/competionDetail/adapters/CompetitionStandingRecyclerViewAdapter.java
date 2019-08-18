@@ -43,14 +43,12 @@ public class CompetitionStandingRecyclerViewAdapter extends RecyclerView.Adapter
     public CompetitionStandingViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(this.context).inflate(R.layout.competition_standings, viewGroup, false);
 
-        Log.e(TAG, "onCreateViewHolder: " + view);
         return new CompetitionStandingViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CompetitionStandingViewHolder competitionStandingViewHolder, int position) {
         CompetitionStandingsTableItemDto competitionStandingsTableItemDto = standings.get(position);
-        Log.e(TAG, "onBindViewHolder: " + new Gson().toJson(competitionStandingsTableItemDto));
 
 
         String clubCrestUrl = competitionStandingsTableItemDto.getTeam().getCrestUrl();
@@ -61,7 +59,6 @@ public class CompetitionStandingRecyclerViewAdapter extends RecyclerView.Adapter
         }
 
 
-        Log.e("recyclerview", "onBindViewHolder: " + new Gson().toJson(competitionStandingsTableItemDto));
         competitionStandingViewHolder.textViewPosition.setText(competitionStandingsTableItemDto.getPosition());
         competitionStandingViewHolder.textViewClubName.setText(competitionStandingsTableItemDto.getTeam().getName());
         competitionStandingViewHolder.textViewPoints.setText(competitionStandingsTableItemDto.getPoints());
