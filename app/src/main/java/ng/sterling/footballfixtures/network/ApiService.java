@@ -18,7 +18,7 @@ import retrofit2.http.Path;
 public interface ApiService {
 
 
-    @GET("matches?dateFrom=2019-08-10&dateTo=2019-08-10")
+    @GET("matches")
     Observable<MatchResponse> getMatches();
 
     @GET("competitions")

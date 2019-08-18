@@ -37,4 +37,6 @@
     <include layout="@layout/content_squad" />
 
 
+
+
 </android.support.design.widget.CoordinatorLayout>

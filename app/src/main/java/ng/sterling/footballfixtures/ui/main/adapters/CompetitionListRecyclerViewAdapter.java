@@ -30,7 +30,6 @@ public class CompetitionListRecyclerViewAdapter extends RecyclerView.Adapter<Com
     ClickListener clickListener;
 
     public CompetitionListRecyclerViewAdapter(Context context, List<NameAndId> competitions, ClickListener clickListener) {
-        Log.e(TAG, "CompetitionListRecyclerViewAdapter: " + new Gson().toJson(competitions));
         this.competitions = competitions;
         this.context = context;
         this.clickListener = clickListener;

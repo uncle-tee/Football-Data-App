@@ -43,7 +43,7 @@ public class MatchFixtureRecylerViewAdapter extends RecyclerView.Adapter<MatchFi
         Match match = matches.get(position);
         matchFixtureViewHolder.textViewAwayTeam.setText(match.getAwayTeam().getName());
         matchFixtureViewHolder.textViewHomeTeam.setText(match.getHomeTeam().getName());
-        matchFixtureViewHolder.textViewMatchStatus.setText(match.getStatus());
+        matchFixtureViewHolder.textViewMatchStatus.setText(match.getStatus().replace("_","-"));
         matchFixtureViewHolder.textViewHomeTeamScore.setText(match.getScore().getFullTime().getHomeTeam());
         matchFixtureViewHolder.textViewAwayTeamScore.setText(match.getScore().getFullTime().getAwayTeam());
         matchFixtureViewHolder.textViewMatchEndTime
