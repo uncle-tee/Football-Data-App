@@ -1,9 +1,6 @@
 package ng.sterling.footballfixtures.ui.competionDetail;
 
 import android.content.Context;
-import android.util.Log;
-
-import com.google.gson.Gson;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -18,7 +15,6 @@ import ng.sterling.footballfixtures.R;
 import ng.sterling.footballfixtures.dto.NameAndId;
 import ng.sterling.footballfixtures.dto.response.CompetitionDetailResponse;
 import ng.sterling.footballfixtures.dto.response.CompetitionStandingResponse;
-import ng.sterling.footballfixtures.dto.response.MainResponseDto;
 import ng.sterling.footballfixtures.dto.response.TeamsResponse;
 import ng.sterling.footballfixtures.model.ApiErorMessageEvent;
 import ng.sterling.footballfixtures.model.ApiSubcriptionEvent;
@@ -31,10 +27,10 @@ import ng.sterling.footballfixtures.network.ApiClient;
  * date:    15/08/2019
  **/
 
-public class CompetitionDeatilPresenterImpl implements CompetitionDetailPresenter {
+public class CompetitionDetailPresenterImpl implements CompetitionDetailPresenter {
 
 
-    public static final String TAG = CompetitionDeatilPresenterImpl.class.getSimpleName();
+    public static final String TAG = CompetitionDetailPresenterImpl.class.getSimpleName();
     ApiClient apiClient;
     Context context;
     CompetitionDetailView competitionDetailView;
@@ -42,7 +38,7 @@ public class CompetitionDeatilPresenterImpl implements CompetitionDetailPresente
 
 
     @Inject
-    public CompetitionDeatilPresenterImpl(ApiClient apiClient,
+    public CompetitionDetailPresenterImpl(ApiClient apiClient,
                                           Context context,
                                           CompetitionDetailView competitionDetailView,
                                           EventBus eventBus) {
@@ -55,8 +51,7 @@ public class CompetitionDeatilPresenterImpl implements CompetitionDetailPresente
 
     private Observable<CompetitionStandingResponse> getCompetitionStanding(Long competitionId) {
         return apiClient.getApiService().getCompetitionStandings(competitionId)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .subscribeOn(Schedulers.io());
     }
 
 
@@ -64,8 +59,7 @@ public class CompetitionDeatilPresenterImpl implements CompetitionDetailPresente
         return apiClient
                 .getApiService()
                 .getTeams(competitionId)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .subscribeOn(Schedulers.io());
     }
 
 
@@ -75,28 +69,28 @@ public class CompetitionDeatilPresenterImpl implements CompetitionDetailPresente
             public CompetitionDetailResponse apply(CompetitionStandingResponse competitionStandingResponse, TeamsResponse teamsResponse) throws Exception {
                 return new CompetitionDetailResponse(teamsResponse, competitionStandingResponse);
             }
-        });
+        }).observeOn(AndroidSchedulers.mainThread());
     }
 
 
     @Override
     public void setCompetition(NameAndId competition) {
-        getCompetitionStandingAndTeams(competition.getId()).subscribe(new ApiCallBack<CompetitionDetailResponse>());
+        getCompetitionStandingAndTeams(2003L).subscribe(new ApiCallBack<CompetitionDetailResponse>());
     }
+
 
     @Subscribe
     public void onGetCompetionStandingAndTeamSuccess(ApiSuccessResponse<CompetitionDetailResponse> response) {
         competitionDetailView.data(response.getData());
-
     }
 
     @Subscribe
-    public void onEventSubcriptionErrorResponse(ApiSubcriptionEvent event){
+    public void onEventSubcriptionErrorResponse(ApiSubcriptionEvent event) {
         competitionDetailView.showViewDistroyMessage(context.getResources().getString(R.string.subcription_paln_error_messsage));
     }
 
     @Subscribe
-    public void OnErrorNetworkResponse(ApiErorMessageEvent response){
+    public void OnErrorNetworkResponse(ApiErorMessageEvent response) {
         competitionDetailView.showNetworkErrorMessage(response.getMessage());
     }
 

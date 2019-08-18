@@ -9,6 +9,8 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -39,6 +41,8 @@ public class CompetitionDetailActivity extends BaseActivity implements Competiti
     TabLayout tabLayout2;
     @BindView(R.id.view_pager)
     ViewPager viewPager;
+    @BindView(R.id.shimmer_view_container)
+    ShimmerFrameLayout shimmerViewContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +57,8 @@ public class CompetitionDetailActivity extends BaseActivity implements Competiti
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        viewPager.setVisibility(View.GONE);
+        shimmerViewContainer.startShimmer();
         competitionDetailPresenter.setCompetition(competition);
 
 
@@ -81,7 +87,9 @@ public class CompetitionDetailActivity extends BaseActivity implements Competiti
 
     @Override
     public void data(CompetitionDetailResponse data) {
-        Log.e(TAG, "data: " + "Settings the data");
+        shimmerViewContainer.stopShimmer();
+        shimmerViewContainer.setVisibility(View.GONE);
+        viewPager.setVisibility(View.VISIBLE);
         viewPager.setAdapter(new CompetitionDetailDetailFragmentPagerAdapter(getSupportFragmentManager(), this, data));
         tabLayout2.setupWithViewPager(viewPager);
         tabLayout2.getTabAt(0).setText("Table");
@@ -102,7 +110,6 @@ public class CompetitionDetailActivity extends BaseActivity implements Competiti
         });
 
         snackbar.show();
-        ;
     }
 
     @Override

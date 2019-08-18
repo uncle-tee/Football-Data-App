@@ -1,6 +1,6 @@
 <resources>
-    <dimen name="fab_margin">16dp</dimen>
-    <dimen name="team_text_size">17dp</dimen>
+    <dimen name="fab_margin">16sp</dimen>
+    <dimen name="team_text_size">17sp</dimen>
     <dimen name="match_status_text_size">14sp</dimen>
     <dimen name="competition_text_size">14sp</dimen>
 </resources>

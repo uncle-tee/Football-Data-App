@@ -27,7 +27,7 @@ public abstract class CompetitionDetailActivityModule {
                                                                   ApiClient apiClient, EventBus eventBus) {
 
 
-        return new CompetitionDeatilPresenterImpl(apiClient, context, competitionDetailView, eventBus);
+        return new CompetitionDetailPresenterImpl(apiClient, context, competitionDetailView, eventBus);
     }
 
 }

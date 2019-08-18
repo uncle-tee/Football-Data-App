@@ -13,6 +13,7 @@ import android.util.Log;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import javax.inject.Inject;
 
@@ -61,13 +62,13 @@ public class MainPresenterImpl implements MainPresenter {
     private Observable<MatchResponse> fetchMatches() {
         return apiClient.getApiService()
                 .getMatches()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .subscribeOn(Schedulers.io());
+
     }
 
     private Observable<CompetitionResponse> fetchCompetitions() {
-        return apiClient.getApiService().getCompetions().subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+        return apiClient.getApiService().getCompetions()
+                .subscribeOn(Schedulers.io());
     }
 
     private Observable<MainResponseDto> fetchMatchesAndCompetitions() {
@@ -76,7 +77,7 @@ public class MainPresenterImpl implements MainPresenter {
             public MainResponseDto apply(MatchResponse matchResponse, CompetitionResponse competitionResponse) throws Exception {
                 return new MainResponseDto(matchResponse, competitionResponse);
             }
-        });
+        }).observeOn(AndroidSchedulers.mainThread());
     }
 
     public void getMatchesAndCompetitions() {
@@ -90,7 +91,7 @@ public class MainPresenterImpl implements MainPresenter {
      *
      * @param response
      */
-    @Subscribe
+    @Subscribe(threadMode = ThreadMode.MAIN)
     public void onGetMatchAndCompetion(ApiSuccessResponse<MainResponseDto> response) {
 
         Log.e(TAG, "onGetMatchAndCompetion: " + "populated the adapter" );

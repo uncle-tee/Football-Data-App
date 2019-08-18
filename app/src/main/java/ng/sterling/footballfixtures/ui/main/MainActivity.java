@@ -55,7 +55,6 @@ public class MainActivity extends BaseActivity implements
 
 
         viewpager.setVisibility(View.GONE);
-//        shimmerFrameLayout.setScrollBarFadeDuration();
         shimmerFrameLayout.startShimmer();
 
         mainPresenter.getMatchesAndCompetitions();
@@ -117,17 +116,22 @@ public class MainActivity extends BaseActivity implements
         shimmerFrameLayout.setVisibility(View.GONE);
         shimmerFrameLayout.stopShimmer();
         viewpager.setAdapter(new MainFragmentAdapter(this, getSupportFragmentManager(), responseData));
+        viewpager.getAdapter().notifyDataSetChanged();
         tabLayout.setupWithViewPager(viewpager);
         this.tabLayout.getTabAt(0).setIcon(R.drawable.soccer_24);
         this.tabLayout.getTabAt(1).setIcon(R.drawable.soccer_field);
         this.tabLayout.addOnTabSelectedListener(this);
     }
 
+
+
     @Override
     public void showNetworkErrorMessage(String message) {
         Log.e(TAG, "showNetworkErrorMessage: " + message );
         Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG).show();
     }
+
+
 
 
     @Override

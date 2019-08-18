@@ -97,6 +97,7 @@ public class MatchFragment extends DaggerFragment implements MatchFragmentView {
                                            LinearLayoutManager layoutManager) {
         matchFixtureRecyclerView.setLayoutManager(layoutManager);
         matchFixtureRecyclerView.setAdapter(adapter);
+        matchFixtureRecyclerView.getAdapter().notifyDataSetChanged();
         matchFixtureRecyclerView.addItemDecoration(lineDivider);
 
     }

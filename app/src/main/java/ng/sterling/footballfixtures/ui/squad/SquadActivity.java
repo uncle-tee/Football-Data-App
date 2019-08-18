@@ -1,12 +1,15 @@
 package ng.sterling.footballfixtures.ui.squad;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import javax.inject.Inject;
@@ -35,6 +38,8 @@ public class SquadActivity extends BaseActivity implements SquadActivityView {
     RecyclerView recyclerviewSquadList;
     @BindView(R.id.toolbar_title)
     TextView toolBarTitle;
+    ProgressDialog pd;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +53,13 @@ public class SquadActivity extends BaseActivity implements SquadActivityView {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         String squadId = getIntent().getStringExtra(CompetitionTeamFragment.TEAM_ID);
+        pd = new ProgressDialog(this);
+        pd.setMessage("Fetching squad info");
+        pd.show();
+
+        recyclerviewSquadList.setVisibility(View.GONE);
+
+
         squadActivityPresenter.getSquad(squadId);
     }
 
@@ -77,6 +89,9 @@ public class SquadActivity extends BaseActivity implements SquadActivityView {
             new GlideSvgUtil.Builder(imageViewTeamImage, team.getCrestUrl(), this).build();
         }
 
+
+        recyclerviewSquadList.setVisibility(View.VISIBLE);
+        pd.dismiss();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerviewSquadList.setLayoutManager(linearLayoutManager);
         recyclerviewSquadList.setAdapter(new SquadRecyclerViewAdapter(this, team.getSquad()));
