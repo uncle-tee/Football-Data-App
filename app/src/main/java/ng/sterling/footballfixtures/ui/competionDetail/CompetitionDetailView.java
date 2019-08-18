@@ -9,4 +9,8 @@ import ng.sterling.footballfixtures.dto.response.CompetitionDetailResponse;
 
 public interface CompetitionDetailView {
     void data(CompetitionDetailResponse data);
+
+    void showViewDistroyMessage(String message);
+
+    void showNetworkErrorMessage(String message);
 }

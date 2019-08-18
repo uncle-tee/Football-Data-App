@@ -2,10 +2,12 @@ package ng.sterling.footballfixtures.ui.competionDetail;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
 
 import javax.inject.Inject;
 
@@ -25,7 +27,8 @@ import ng.sterling.footballfixtures.ui.main.listeners.OnFragmentInteractionListe
  **/
 
 
-public class CompetitionDetailActivity extends BaseActivity implements CompetitionDetailView, OnFragmentInteractionListener {
+public class CompetitionDetailActivity extends BaseActivity implements CompetitionDetailView,
+        OnFragmentInteractionListener {
 
     public static final String TAG = CompetitionDetailActivity.class.getSimpleName();
     @Inject
@@ -44,7 +47,7 @@ public class CompetitionDetailActivity extends BaseActivity implements Competiti
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
 
-        final NameAndId competition = (NameAndId)getIntent().getSerializableExtra(CompetitionFragment.COMPETITION_ARG);
+        final NameAndId competition = (NameAndId) getIntent().getSerializableExtra(CompetitionFragment.COMPETITION_ARG);
         getSupportActionBar().setTitle(competition.getName());
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back_black_24dp);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -87,7 +90,28 @@ public class CompetitionDetailActivity extends BaseActivity implements Competiti
     }
 
     @Override
+    public void showViewDistroyMessage(String message) {
+        final Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_INDEFINITE);
+
+        snackbar.setAction("close", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                snackbar.dismiss();
+                CompetitionDetailActivity.this.finish();
+            }
+        });
+
+        snackbar.show();
+        ;
+    }
+
+    @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    @Override
+    public void showNetworkErrorMessage(String message) {
+        Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG).show();
     }
 }

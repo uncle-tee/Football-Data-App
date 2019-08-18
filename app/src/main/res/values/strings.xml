@@ -8,4 +8,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_competion_detail">CompetionDetailActivity</string>
     <string name="title_activity_squad">SquadActivity</string>
+    <string name="subcription_paln_error_messsage">Please upgrade your subscription plan to view details</string>
 </resources>

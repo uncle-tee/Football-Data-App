@@ -14,11 +14,14 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.BiFunction;
 import io.reactivex.schedulers.Schedulers;
+import ng.sterling.footballfixtures.R;
 import ng.sterling.footballfixtures.dto.NameAndId;
 import ng.sterling.footballfixtures.dto.response.CompetitionDetailResponse;
 import ng.sterling.footballfixtures.dto.response.CompetitionStandingResponse;
 import ng.sterling.footballfixtures.dto.response.MainResponseDto;
 import ng.sterling.footballfixtures.dto.response.TeamsResponse;
+import ng.sterling.footballfixtures.model.ApiErorMessageEvent;
+import ng.sterling.footballfixtures.model.ApiSubcriptionEvent;
 import ng.sterling.footballfixtures.model.ApiSuccessResponse;
 import ng.sterling.footballfixtures.network.ApiCallBack;
 import ng.sterling.footballfixtures.network.ApiClient;
@@ -78,8 +81,7 @@ public class CompetitionDeatilPresenterImpl implements CompetitionDetailPresente
 
     @Override
     public void setCompetition(NameAndId competition) {
-        getCompetitionStandingAndTeams(2002L).subscribe(new ApiCallBack<CompetitionDetailResponse>());
-        // Todo Update the competition and whwn 403 return a toast saying app is not in full mode.
+        getCompetitionStandingAndTeams(competition.getId()).subscribe(new ApiCallBack<CompetitionDetailResponse>());
     }
 
     @Subscribe
@@ -87,6 +89,17 @@ public class CompetitionDeatilPresenterImpl implements CompetitionDetailPresente
         competitionDetailView.data(response.getData());
 
     }
+
+    @Subscribe
+    public void onEventSubcriptionErrorResponse(ApiSubcriptionEvent event){
+        competitionDetailView.showViewDistroyMessage(context.getResources().getString(R.string.subcription_paln_error_messsage));
+    }
+
+    @Subscribe
+    public void OnErrorNetworkResponse(ApiErorMessageEvent response){
+        competitionDetailView.showNetworkErrorMessage(response.getMessage());
+    }
+
 
     @Override
     public void onPause() {
