@@ -118,8 +118,8 @@ public class MainActivity extends BaseActivity implements
         viewpager.setAdapter(new MainFragmentAdapter(this, getSupportFragmentManager(), responseData));
         viewpager.getAdapter().notifyDataSetChanged();
         tabLayout.setupWithViewPager(viewpager);
-        this.tabLayout.getTabAt(0).setIcon(R.drawable.soccer_24);
-        this.tabLayout.getTabAt(1).setIcon(R.drawable.soccer_field);
+        this.tabLayout.getTabAt(0).setIcon(R.drawable.soccer_24_black);
+        this.tabLayout.getTabAt(1).setIcon(R.drawable.soccer_field_grey);
         this.tabLayout.addOnTabSelectedListener(this);
     }
 
@@ -140,9 +140,13 @@ public class MainActivity extends BaseActivity implements
         switch (position) {
             case 0:
                 toolbar.setTitle("Today's Fixture");
+                this.tabLayout.getTabAt(0).setIcon(R.drawable.soccer_24_black);
+                this.tabLayout.getTabAt(1).setIcon(R.drawable.soccer_field_grey);
                 break;
             case 1:
                 toolbar.setTitle("Competitions");
+                this.tabLayout.getTabAt(0).setIcon(R.drawable.soccer_24_grey);
+                this.tabLayout.getTabAt(1).setIcon(R.drawable.soccer_field_black);
                 break;
 
         }
