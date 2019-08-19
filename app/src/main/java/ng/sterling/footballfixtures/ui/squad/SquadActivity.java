@@ -9,7 +9,6 @@ import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import javax.inject.Inject;
@@ -19,7 +18,7 @@ import butterknife.ButterKnife;
 import ng.sterling.footballfixtures.R;
 import ng.sterling.footballfixtures.dto.response.TeamDto;
 import ng.sterling.footballfixtures.ui.BaseActivity;
-import ng.sterling.footballfixtures.ui.competionDetail.fragments.competitionTeam.CompetitionTeamFragment;
+import ng.sterling.footballfixtures.ui.competitionDetail.fragments.competitionTeam.CompetitionTeamFragment;
 import ng.sterling.footballfixtures.ui.squad.adapters.SquadRecyclerViewAdapter;
 import ng.sterling.footballfixtures.utils.glide.GlideSvgUtil;
 

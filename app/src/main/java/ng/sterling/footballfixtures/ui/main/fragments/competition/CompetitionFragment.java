@@ -19,7 +19,7 @@ import butterknife.ButterKnife;
 import dagger.android.support.DaggerFragment;
 import ng.sterling.footballfixtures.R;
 import ng.sterling.footballfixtures.dto.NameAndId;
-import ng.sterling.footballfixtures.ui.competionDetail.CompetitionDetailActivity;
+import ng.sterling.footballfixtures.ui.competitionDetail.CompetitionDetailActivity;
 import ng.sterling.footballfixtures.ui.main.adapters.CompetitionListRecyclerViewAdapter;
 import ng.sterling.footballfixtures.ui.main.listeners.OnFragmentInteractionListener;
 
