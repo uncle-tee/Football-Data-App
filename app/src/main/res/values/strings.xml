@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FootBallFixtures</string>
+    <string name="app_name">FootBall-Data</string>
     <string name="action_settings">Settings</string>
     <string name="football_data_base_url">https://api.football-data.org/v2</string>
     <string name="football_data_header_key">X-Auth-Token</string>

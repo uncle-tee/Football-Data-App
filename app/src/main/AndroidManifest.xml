@@ -19,7 +19,7 @@
             android:label="@string/title_activity_squad"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".ui.competionDetail.CompetitionDetailActivity"
+            android:name=".ui.competitionDetail.CompetitionDetailActivity"
             android:label="@string/title_activity_competion_detail"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

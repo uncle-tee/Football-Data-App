@@ -11,10 +11,8 @@ import javax.inject.Singleton;
 
 import dagger.BindsInstance;
 import dagger.Component;
-import dagger.android.AndroidInjectionModule;
 import dagger.android.support.AndroidSupportInjectionModule;
 import ng.sterling.footballfixtures.FootBallFixture;
-import ng.sterling.footballfixtures.ui.competionDetail.CompetitionDetailActivity;
 import ng.sterling.footballfixtures.ui.main.MainPresenter;
 
 @Component(modules = {

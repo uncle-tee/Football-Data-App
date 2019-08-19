@@ -2,9 +2,9 @@ package ng.sterling.footballfixtures.di;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
-import ng.sterling.footballfixtures.ui.competionDetail.CompetitionDetailActivity;
-import ng.sterling.footballfixtures.ui.competionDetail.CompetitionDetailActivityModule;
-import ng.sterling.footballfixtures.ui.competionDetail.CompetitionDetailsFragmentProvider;
+import ng.sterling.footballfixtures.ui.competitionDetail.CompetitionDetailActivity;
+import ng.sterling.footballfixtures.ui.competitionDetail.CompetitionDetailActivityModule;
+import ng.sterling.footballfixtures.ui.competitionDetail.CompetitionDetailsFragmentProvider;
 import ng.sterling.footballfixtures.ui.main.CompetitionAndMatchFragmentProvider;
 import ng.sterling.footballfixtures.ui.main.MainActivity;
 import ng.sterling.footballfixtures.ui.main.MainActivityModule;

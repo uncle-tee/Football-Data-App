@@ -34,7 +34,7 @@
         app:layout_constraintHorizontal_bias="0.237"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_gravity="center"
-        app:shimmer_duration="@android:integer/config_shortAnimTime"
+        app:shimmer_duration="800"
         app:shimmer_tilt="@android:integer/config_mediumAnimTime"
         android:orientation="vertical">
 
