@@ -1,6 +1,10 @@
 # Sterling Bank App Developer Test
 
 
+## App Download Link.
+
+[Football-data-app](https://drive.google.com/file/d/1l2S1btUd04vdv_P1hhLDjIvwJTVYGOLL/view)
+
 #### Technology stack Used
 
 The mobile application was built using MVP architectural pattern using the listed third-party libraries.
